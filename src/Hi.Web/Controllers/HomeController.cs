@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Hi.Web.Models;
 
@@ -12,7 +9,7 @@ namespace Hi.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(new List<Post>{new Post { Title = "My Title", Body = "My Body" }});
         }
 
         public IActionResult About()
