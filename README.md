@@ -1,3 +1,3 @@
-# hi
+# Hi
 
-Hi - a developer-friendly personal site, combining posts from Medium and projects from GitHub
+A developer-friendly personal site, combining posts from Medium and projects from GitHub.
