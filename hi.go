@@ -1,19 +1,13 @@
 package main
 
 import (
-    "fmt"
-    "io/ioutil"
-     "log"
+	"net/http"
 )
 
 func main() {
-	files, err := ioutil.ReadDir("./static")
-	
-    if err != nil {
-        log.Fatal(err)
-    }
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 
-    for _, f := range files {
-            fmt.Println(f.Name())
-    }
+	if err := http.ListenAndServe(":80", nil); err != nil {
+		panic(err)
+	}
 }
