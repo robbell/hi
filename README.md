@@ -4,12 +4,11 @@ A developer-friendly blog engine, written in Go, driven by GitHub.
 
 ## To Do
 
+- [x] Serve static files
+- [ ] Add GitHub hook to notify of changes
 - [ ] Define post Markdown format
 - [ ] Static page generation
-- [ ] All controllers (what's the Go equivalent to a controller?)
-  - [ ] All posts - how do we define order? File name date?
-  - [ ] Single post
-  - [ ] Tagged post list
-- [ ] GitHub hooks to notify
-- [ ] Static content
+  - [ ] Templates
+  - [ ] Single pages
+  - [ ] List pages (homepage, tags)
 - [ ] Tests! (Probably to come later as I'm still learning Go)
