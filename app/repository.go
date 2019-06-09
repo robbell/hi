@@ -11,14 +11,12 @@ type markdownRepository interface {
 }
 
 type fileSystemMarkdownRepository struct {
-	sourceDirectory     string
-	markdownPostFactory markdownPostFactory
+	sourceDirectory string
 }
 
 func newFileSystemMarkdownRepository() markdownRepository {
 	return fileSystemMarkdownRepository{
-		sourceDirectory:     "./static",
-		markdownPostFactory: newMarkdownPostFactory(),
+		sourceDirectory: "./static",
 	}
 }
 
@@ -32,7 +30,7 @@ func (s fileSystemMarkdownRepository) getAll() []markdownPost {
 	var posts []markdownPost
 
 	for _, file := range files {
-		if post, ok := s.markdownPostFactory.loadMarkdownPost(path.Join(s.sourceDirectory, file.Name())); ok {
+		if post, ok := newMarkdownPost(path.Join(s.sourceDirectory, file.Name())); ok {
 			posts = append(posts, post)
 		}
 	}
@@ -41,6 +39,6 @@ func (s fileSystemMarkdownRepository) getAll() []markdownPost {
 }
 
 func (s fileSystemMarkdownRepository) getByTitle(title string) markdownPost {
-	post, _ := s.markdownPostFactory.loadMarkdownPost(path.Join(s.sourceDirectory, title+".md"))
+	post, _ := newMarkdownPost(path.Join(s.sourceDirectory, title+".md"))
 	return post
 }

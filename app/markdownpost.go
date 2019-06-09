@@ -17,31 +17,21 @@ type markdownPost struct {
 	Permalink   string
 }
 
-type markdownPostFactory struct {
-	fmHandler *front.Matter
-}
-
-func newMarkdownPostFactory() markdownPostFactory {
+func newMarkdownPost(path string) (markdownPost, bool) {
 	fmHandler := front.NewMatter()
 	fmHandler.Handle("---", front.YAMLHandler)
 
-	return markdownPostFactory{
-		fmHandler: fmHandler,
-	}
-}
-
-func (f markdownPostFactory) loadMarkdownPost(markdownPath string) (markdownPost, bool) {
-	if filepath.Ext(markdownPath) != ".md" {
+	if filepath.Ext(path) != ".md" {
 		return markdownPost{}, false
 	}
 
-	file, err := os.Open(markdownPath)
+	file, err := os.Open(path)
 
 	if err != nil {
 		return markdownPost{}, false
 	}
 
-	frontMatter, body, err := f.fmHandler.Parse(file)
+	frontMatter, body, err := fmHandler.Parse(file)
 
 	if err != nil {
 		panic(err)
