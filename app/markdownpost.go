@@ -1,22 +1,20 @@
 package main
 
 import (
+	"html/template"
 	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/gernest/front"
+	"gopkg.in/russross/blackfriday.v2"
 )
 
 type markdownPost struct {
 	Title       string
-	Body        string
+	Body        template.HTML
 	PublishedOn time.Time
 	Permalink   string
-}
-
-func (m markdownPost) bodyAsHTML() string {
-	return "<p>" + m.Body + "</p>"
 }
 
 type markdownPostFactory struct {
@@ -53,7 +51,7 @@ func (f markdownPostFactory) loadMarkdownPost(markdownPath string) (markdownPost
 
 	return markdownPost{
 			Title:       frontMatter["title"].(string),
-			Body:        body,
+			Body:        template.HTML(blackfriday.Run([]byte(body))),
 			PublishedOn: publishedOn,
 			Permalink:   frontMatter["permalink"].(string),
 		},
