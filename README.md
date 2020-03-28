@@ -2,7 +2,9 @@
 
 A developer-friendly blog engine, written in Go, driven by GitHub.
 
+<p align="center">
 ![Sample Component diagram](docs/hi-component.svg)
+</p>
 
 ## To Do
 
