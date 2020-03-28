@@ -1,0 +1,21 @@
+@startuml Component diagram for Hi
+!include https://raw.githubusercontent.com/robbell/plantuml-c4/v1.0/c4.puml
+
+Person("Visitor", "A visitor to the Hi website") as visitor 
+Person("Editor", "An editor of the Hi website") as editor
+
+Boundary("Hi website", "Container"){
+    Component("Static file server", "Serves static website files", "Go web server") as staticFileServer
+    Component("Static files", "Build", "File system") as staticFiles
+    Component("Website builder", "Builds static files", "Go web server") as websiteBuilder
+}
+
+Component("GitHub repository", "Stores the blog pages as MarkDown", "Markdown in Git") as gitHub
+
+visitor ..> staticFileServer : Requests pages Tech("HTTP")
+editor ..> gitHub : Commits pages Tech("Git")
+gitHub ..> websiteBuilder : Informs of changes Tech("Git")
+staticFileServer ..> staticFiles : Gets static files Tech("IO")
+websiteBuilder ..> staticFiles : Writes static files Tech("IO")
+
+@enduml
