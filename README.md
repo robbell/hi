@@ -2,11 +2,7 @@
 
 A developer-friendly blog engine, written in Go, driven by GitHub.
 
-<p align="center">
 ![Sample Component diagram](docs/hi-component.svg)
-
-<img src="https://raw.githubusercontent.com/robbell/hi/master/docs/hi-component.svg" alt="Sample Component diagram"/>
-</p>
 
 ## To Do
 
