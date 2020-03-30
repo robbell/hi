@@ -8,4 +8,4 @@ FROM alpine:latest AS production
 COPY --from=builder /build/app .
 EXPOSE 80
 
-CMD ["./hi"]
+ENTRYPOINT ["./hi"]
