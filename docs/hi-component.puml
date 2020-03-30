@@ -6,7 +6,7 @@ Person("Editor", "An editor of the Hi website") as editor
 
 Boundary("Hi website", "Container"){
     Component("Static file server", "Serves static website files", "Go web server") as staticFileServer
-    Component("Static files", "Build", "File system") as staticFiles
+    Component("Static files", "Files created by the builder", "File system") as staticFiles
     Component("Website builder", "Builds static files", "Go web server") as websiteBuilder
 }
 

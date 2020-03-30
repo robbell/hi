@@ -1,0 +1,26 @@
+@startuml
+actor Editor
+participant GitHub
+participant Builder
+participant FileSystem
+participant Server
+actor Visitor
+
+== Initialisation ==
+Editor -> GitHub: Push MarkDown files
+GitHub -> Builder: Notify of changes
+Builder -> GitHub: Request all files
+GitHub --> Builder: Send files
+Builder -> Builder: Write to disk
+Builder -> Builder: Build individual pages
+Builder -> FileSystem: Write static pages
+Builder -> Builder: Build list pages
+Builder -> FileSystem: Write static list pages
+
+== Serving pages ==
+Server <- Visitor: Request page
+Server -> FileSystem: Get static page
+FileSystem --> Server: Get static page
+Server --> Visitor: Return page
+
+@enduml
