@@ -21,7 +21,11 @@ func newFileSystemMarkdownRepository() markdownRepository {
 }
 
 func (s fileSystemMarkdownRepository) getAll() []markdownPost {
-	files, err := ioutil.ReadDir(s.sourceDirectory)
+	return getFilesInDirectory(s.sourceDirectory)
+}
+
+func getFilesInDirectory(directory string) []markdownPost {
+	files, err := ioutil.ReadDir(directory)
 
 	if err != nil {
 		panic(err)
@@ -29,8 +33,11 @@ func (s fileSystemMarkdownRepository) getAll() []markdownPost {
 
 	var posts []markdownPost
 
-	for _, file := range files {
-		if post, ok := newMarkdownPost(path.Join(s.sourceDirectory, file.Name())); ok {
+	for _, directoryItem := range files {
+
+		if directoryItem.IsDir() {
+			posts = append(posts, getFilesInDirectory(path.Join(directory, directoryItem.Name()))...)
+		} else if post, ok := newMarkdownPost(path.Join(directory, directoryItem.Name())); ok {
 			posts = append(posts, post)
 		}
 	}
