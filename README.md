@@ -22,6 +22,7 @@ A developer-friendly blog engine, written in Go, driven by GitHub.
 - [ ] Should I copy the application to the root of my Docker image?
 - [ ] Optimise Dockerfile - seems to be rebuilding when later layers are changed
 - [ ] Understand the details of Go Modules
+- [ ] Understand Go testing
 
 ## Future
 - [ ] AMP support
