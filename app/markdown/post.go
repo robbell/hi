@@ -16,6 +16,7 @@ type Post struct {
 	Body        template.HTML
 	PublishedOn time.Time
 	Permalink   string
+	Tags        []string
 }
 
 // ToHTMLPost converts a Markdown post to HTML
@@ -36,7 +37,30 @@ func ToHTMLPost(content string, sourcePath string) (Post, error) {
 			Title:       frontMatter["title"].(string),
 			Body:        template.HTML(blackfriday.Run([]byte(body))),
 			PublishedOn: publishedOn,
-			Permalink:   io.ReplaceExtension(sourcePath, ""),
+			Permalink:   getPermalink(sourcePath),
+			Tags:        getTags(frontMatter),
 		},
 		nil
+}
+
+func getPermalink(sourcePath string) string {
+	if !strings.HasPrefix(sourcePath, "/") {
+		sourcePath = "/" + sourcePath
+	}
+
+	return io.ReplaceExtension(sourcePath, "")
+}
+
+func getTags(frontMatter map[string]interface{}) []string {
+
+	if tags, found := frontMatter["tags"]; found {
+		tagInterface := tags.([]interface{})
+		tags := make([]string, len(tagInterface))
+		for key, tag := range tagInterface {
+			tags[key] = tag.(string)
+		}
+
+		return tags
+	}
+	return nil
 }

@@ -22,7 +22,7 @@ func (h *handler) rebuild(w http.ResponseWriter, r *http.Request) {
 	}
 
 	repo := newRepo(*pushEvent.Repo.Owner.Name, *pushEvent.Repo.Name)
-	if err = repo.process(&processors.SinglePost{}, &processors.List{}); err != nil {
+	if err = repo.process(&processors.SinglePost{}, &processors.List{}, processors.NewTagList()); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 	}
 
