@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/google/go-github/github"
 	"github.com/robbell/hi/app/hook"
+	"github.com/robbell/hi/app/processors"
 )
 
 type handler struct{}
@@ -13,25 +13,18 @@ func newHandler() *handler {
 	return &handler{}
 }
 
-func (h *handler) rebuild(_ http.ResponseWriter, r *http.Request) {
+func (h *handler) rebuild(w http.ResponseWriter, r *http.Request) {
 
 	pushEvent, err := hook.ValidatePushEvent(r)
 	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return // To do: log error or report failure
 	}
 
-	site := newSite()
-	site.rebuild(pushEvent)
-}
+	repo := newRepo(*pushEvent.Repo.Owner.Name, *pushEvent.Repo.Name)
+	if err = repo.process(&processors.SinglePost{}, &processors.List{}); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+	}
 
-type site struct{}
-
-func newSite() *site {
-	return &site{}
-}
-
-func (s *site) rebuild(e *github.PushEvent) {
-	r := newRepo(*e.Repo.Name)
-
-	r.download()
+	w.WriteHeader(http.StatusOK)
 }

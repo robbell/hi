@@ -25,6 +25,15 @@ A developer-friendly blog engine, written in Go, driven by GitHub.
 - [ ] Understand Go testing
 
 ## Future
-- [ ] AMP support
 - [ ] Micro browser support (https://24ways.org/2019/microbrowsers-are-everywhere/)
 - [ ] Medium publishing
+- [ ] Pipeline for site generation
+  - [x] HTML page building
+  - [ ] AMP page building
+  - [ ] List building
+    - [x] Index
+    - [ ] By tag
+    - [ ] By type
+  - [ ] RSS building
+  - [ ] Related pages
+- [x] File extension removal

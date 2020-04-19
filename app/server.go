@@ -5,9 +5,11 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/robbell/hi/app/io"
 )
 
 const (
+	port   = 8080
 	banner = `
   _     _        __
  | |__ (_)  (( ,\ \ \  ))
@@ -15,7 +17,7 @@ const (
  | | | | | _  \ ' ' ' \/ )
  |_| |_|_|(_)  \        /
 --------------------------
-%s
+%s%v
 `
 )
 
@@ -27,11 +29,11 @@ func (s server) Start() {
 
 	router.StrictSlash(true)
 	router.HandleFunc("/hooks/rebuild", handler.rebuild)
-	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./images/")))
+	router.PathPrefix("/").Handler(http.FileServer(io.FriendlyFileSystem{Fs: http.Dir("./static/")}))
 
-	fmt.Printf(banner, "Hi server is listening on http://localhost:80")
+	fmt.Printf(banner, "Hi server is listening on http://localhost:", port)
 
-	if err := http.ListenAndServe(":80", router); err != nil {
+	if err := http.ListenAndServe(fmt.Sprintf(":%v", port), router); err != nil {
 		panic(err)
 	}
 }

@@ -9,7 +9,7 @@ import (
 // ValidatePushEvent returns a valid PushEvent or nil if invalid
 func ValidatePushEvent(r *http.Request) (e *github.PushEvent, err error) {
 
-	payload, err := github.ValidatePayload(r, []byte("smelly")) // To do: replace with env variable
+	payload, err := github.ValidatePayload(r, []byte("[Replaced]")) // To do: replace with env variable
 	if err != nil {
 		return nil, err
 	}
