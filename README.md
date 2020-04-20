@@ -1,6 +1,6 @@
-# Hi
+# Hi 👋
 
-A developer-friendly blog engine, written in Go, driven by GitHub.
+A developer-friendly static site generator, written in Go, backed by GitHub.
 
 ![Sample Component diagram](docs/hi-component.svg)
 
