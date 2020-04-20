@@ -8,14 +8,14 @@ import (
 	"github.com/robbell/hi/app/markdown"
 )
 
-// SinglePost processor generates HTML pages for single posts
-type SinglePost struct{}
+// Post processor generates HTML pages for single posts
+type Post struct{}
 
 // Process generates an HTML page for a single post
-func (p SinglePost) Process(post markdown.Post) error {
+func (p Post) Process(post markdown.Post) error {
 	var postBuffer bytes.Buffer
 
-	tmpl := template.Must(template.ParseFiles("./templates/single-post.html"))
+	tmpl := template.Must(template.ParseFiles("./templates/post.html", "./templates/base.html"))
 	if err := tmpl.Execute(&postBuffer, post); err != nil {
 		return err
 	}
@@ -29,6 +29,6 @@ func (p SinglePost) Process(post markdown.Post) error {
 }
 
 // Finish is a NOP for a single post
-func (p SinglePost) Finish() error {
+func (p Post) Finish() error {
 	return nil
 }

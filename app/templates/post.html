@@ -1,0 +1,15 @@
+{{template "base" .}}
+
+{{define "main"}}
+<h1>{{ .Title }}</h1>
+
+{{ .Body }}
+
+<h2>Tags</h2>
+
+<ul>
+    {{range .Tags}}
+    <li><a href="/tags/{{ . }}">{{ . }}</a></li>
+    {{end}}
+</ul>
+{{end}}

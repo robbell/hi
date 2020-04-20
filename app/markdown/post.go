@@ -10,9 +10,12 @@ import (
 	"gopkg.in/russross/blackfriday.v2"
 )
 
+const summaryBreak = "[!EndSummary]"
+
 // Post represents a blog post
 type Post struct {
 	Title       string
+	Summary     template.HTML
 	Body        template.HTML
 	PublishedOn time.Time
 	Permalink   string
@@ -23,7 +26,8 @@ type Post struct {
 func ToHTMLPost(content string, sourcePath string) (Post, error) {
 	fmHandler := front.NewMatter()
 	fmHandler.Handle("---", front.YAMLHandler)
-	frontMatter, body, err := fmHandler.Parse(strings.NewReader(content))
+	frontMatter, markdown, err := fmHandler.Parse(strings.NewReader(content))
+
 	if err != nil {
 		return Post{}, err
 	}
@@ -35,12 +39,27 @@ func ToHTMLPost(content string, sourcePath string) (Post, error) {
 
 	return Post{
 			Title:       frontMatter["title"].(string),
-			Body:        template.HTML(blackfriday.Run([]byte(body))),
+			Summary:     getSummary(markdown),
+			Body:        getBody(markdown),
 			PublishedOn: publishedOn,
 			Permalink:   getPermalink(sourcePath),
 			Tags:        getTags(frontMatter),
 		},
 		nil
+}
+
+func getSummary(markdown string) template.HTML {
+
+	if i := strings.Index(markdown, summaryBreak); i > 0 {
+		markdown = markdown[:i]
+	}
+
+	return template.HTML(blackfriday.Run([]byte(markdown)))
+}
+
+func getBody(markdown string) template.HTML {
+	sanitised := strings.Replace(markdown, summaryBreak, "", -1)
+	return template.HTML(blackfriday.Run([]byte(sanitised)))
 }
 
 func getPermalink(sourcePath string) string {

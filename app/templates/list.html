@@ -1,0 +1,14 @@
+{{template "base" .}}
+
+{{define "main"}}
+<h1>{{ .Title }}</h1>
+<ul>
+    {{range .Posts}}
+    <li>
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <p>{{ .Summary }}</p>
+        <p><a href="{{ .Permalink }}">Continue reading...</a></p>
+    </li>
+    {{end}}
+</ul>
+{{end}}
