@@ -37,7 +37,7 @@ func (t *Tags) Finish() error {
 		var listBuffer bytes.Buffer
 
 		tmpl := template.Must(template.ParseFiles("./templates/list.html", "./templates/base.html"))
-		if err := tmpl.Execute(&listBuffer, models.List{Title: tag, Posts: posts}); err != nil {
+		if err := tmpl.Execute(&listBuffer, models.List{Title: fmt.Sprintf("Posts tagged with \"%v\"", tag), Posts: posts}); err != nil {
 			return err
 		}
 
