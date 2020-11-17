@@ -1,6 +1,6 @@
 package processors
 
-import "github.com/robbell/hi/app/markdown"
+import "github.com/robbell/hi/markdown"
 
 // Processor interface for the site rebuild pipeline
 type Processor interface {

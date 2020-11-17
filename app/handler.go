@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/robbell/hi/app/hook"
-	"github.com/robbell/hi/app/processors"
+	"github.com/robbell/hi/hook"
+	"github.com/robbell/hi/processors"
 )
 
 type handler struct{}

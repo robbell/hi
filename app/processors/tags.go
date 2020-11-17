@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"text/template"
 
-	"github.com/robbell/hi/app/io"
-	"github.com/robbell/hi/app/markdown"
-	"github.com/robbell/hi/app/models"
+	"github.com/robbell/hi/io"
+	"github.com/robbell/hi/markdown"
+	"github.com/robbell/hi/models"
 )
 
 // Tags processor generates HTML lists of posts by tag

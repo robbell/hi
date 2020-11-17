@@ -1,6 +1,6 @@
 package models
 
-import "github.com/robbell/hi/app/markdown"
+import "github.com/robbell/hi/markdown"
 
 // List represents a list of posts and a title
 type List struct {

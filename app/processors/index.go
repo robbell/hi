@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"text/template"
 
-	"github.com/robbell/hi/app/io"
-	"github.com/robbell/hi/app/markdown"
-	"github.com/robbell/hi/app/models"
+	"github.com/robbell/hi/io"
+	"github.com/robbell/hi/markdown"
+	"github.com/robbell/hi/models"
 )
 
 // Index processor generates the HTML index page

@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/robbell/hi/app/io"
+	"github.com/robbell/hi/io"
 )
 
 const (

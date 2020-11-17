@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/google/go-github/v31/github"
-	"github.com/robbell/hi/app/markdown"
-	"github.com/robbell/hi/app/processors"
+	"github.com/robbell/hi/markdown"
+	"github.com/robbell/hi/processors"
 	"golang.org/x/oauth2"
 )
 

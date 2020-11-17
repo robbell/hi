@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gernest/front"
-	"github.com/robbell/hi/app/io"
+	"github.com/robbell/hi/io"
 	"gopkg.in/russross/blackfriday.v2"
 )
 
