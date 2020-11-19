@@ -6,6 +6,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o app/hi
 
 FROM alpine:latest AS production
 COPY --from=builder /build/app .
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT ["./hi"]
