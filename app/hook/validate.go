@@ -2,6 +2,7 @@ package hook
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/google/go-github/github"
 )
@@ -9,7 +10,7 @@ import (
 // ValidatePushEvent returns a valid PushEvent or nil if invalid
 func ValidatePushEvent(r *http.Request) (e *github.PushEvent, err error) {
 
-	payload, err := github.ValidatePayload(r, []byte("[Replaced]")) // To do: replace with env variable
+	payload, err := github.ValidatePayload(r, []byte(os.Getenv("WEBHOOK_SECRET")))
 	if err != nil {
 		return nil, err
 	}

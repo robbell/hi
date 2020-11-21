@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/google/go-github/v31/github"
 	"github.com/robbell/hi/markdown"
@@ -23,7 +24,7 @@ func (s *repo) process(processors ...processors.Processor) error {
 	context := context.Background()
 
 	tokenSource := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: "[Replaced]"}, // To do: replace with env variable
+		&oauth2.Token{AccessToken: os.Getenv("ACCESS_TOKEN")},
 	)
 	tokenClient := oauth2.NewClient(context, tokenSource)
 	client := github.NewClient(tokenClient)
