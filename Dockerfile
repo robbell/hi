@@ -9,4 +9,5 @@ FROM alpine:latest AS production
 COPY --from=builder /build/app /hi
 EXPOSE 8080
 
-ENTRYPOINT ["./hi/hi"]
+WORKDIR /hi
+ENTRYPOINT ["./hi"]
