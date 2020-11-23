@@ -15,6 +15,9 @@ A developer-friendly static site generator, written in Go, backed by GitHub.
   - [x] Templates
   - [x] Single pages
   - [x] List pages (homepage, tags)
+- [ ] Helm charts
+  - [x] Persistent storage for generated site
+  - [ ] Secret management
 - [ ] Tests! (Probably to come later as I'm still learning Go)
 
 ### Development practices
