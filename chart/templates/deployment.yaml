@@ -18,7 +18,19 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: "/hi/static"
+              name: volume
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
+          env:
+            - name: ACCESS_TOKEN
+              value: TBC
+            - name: WEBHOOK_SECRET
+              value: TBC
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: {{ include "chart.fullname" . }}
