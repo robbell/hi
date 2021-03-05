@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/google/go-github/v31/github"
-	"github.com/robbell/hi/markdown"
 	"github.com/robbell/hi/processors"
 	"golang.org/x/oauth2"
 )
@@ -70,13 +69,8 @@ func (s *repo) processFile(ctx context.Context, client *github.Client, sourcePat
 		return err
 	}
 
-	post, err := markdown.ToHTMLPost(content, sourcePath)
-	if err != nil {
-		return err
-	}
-
 	for _, processor := range processors {
-		processor.Process(post) // To do: error aggregation for processors
+		processor.Process(content, sourcePath) // To do: error aggregation for processors
 	}
 
 	return nil

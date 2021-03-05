@@ -3,6 +3,7 @@ package processors
 import (
 	"bytes"
 	"fmt"
+	"strings"
 	"text/template"
 
 	"github.com/robbell/hi/io"
@@ -23,7 +24,16 @@ func NewTags() *Tags {
 }
 
 // Process collects information about posts to list by tag
-func (t *Tags) Process(post markdown.Post) error {
+func (t *Tags) Process(content string, sourcePath string) error {
+	if !strings.HasSuffix(sourcePath, ".md") {
+		return nil
+	}
+
+	post, err := markdown.ToHTMLPost(content, sourcePath)
+	if err != nil {
+		return err
+	}
+
 	for _, tag := range post.Tags {
 		t.tags[tag] = append(t.tags[tag], post)
 	}

@@ -2,6 +2,8 @@ package processors
 
 import (
 	"bytes"
+	"sort"
+	"strings"
 	"text/template"
 
 	"github.com/robbell/hi/io"
@@ -15,13 +17,25 @@ type Index struct {
 }
 
 // Process collects information about posts to display on index
-func (i *Index) Process(post markdown.Post) error {
+func (i *Index) Process(content string, sourcePath string) error {
+
+	if !strings.HasSuffix(sourcePath, ".md") {
+		return nil
+	}
+
+	post, err := markdown.ToHTMLPost(content, sourcePath)
+	if err != nil {
+		return err
+	}
+
 	i.posts = append(i.posts, post)
 	return nil
 }
 
 // Finish creates the index page
 func (i *Index) Finish() error {
+	sort.Sort(ByDate(i.posts))
+
 	var listBuffer bytes.Buffer
 
 	tmpl := template.Must(template.ParseFiles("./templates/list.html", "./templates/base.html"))
@@ -35,3 +49,9 @@ func (i *Index) Finish() error {
 
 	return nil
 }
+
+type ByDate []markdown.Post
+
+func (a ByDate) Len() int           { return len(a) }
+func (a ByDate) Less(i, j int) bool { return a[i].PublishedOn.After(a[j].PublishedOn) }
+func (a ByDate) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
