@@ -1,9 +1,9 @@
 {{template "base" .}}
 
 {{define "main"}}
-{{if .Title}}
+<!-- {{if .Title}}
 <h2>{{ .Title }}</h2>
-{{end}}
+{{end}} -->
 {{range .Posts}}
 <article>
     <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
