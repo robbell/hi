@@ -20,6 +20,7 @@ type Post struct {
 	PublishedOn time.Time
 	Permalink   string
 	Tags        []string
+	IsListed    bool
 }
 
 // ToHTMLPost converts a Markdown post to HTML
@@ -44,6 +45,7 @@ func ToHTMLPost(content string, sourcePath string) (Post, error) {
 			PublishedOn: publishedOn,
 			Permalink:   getPermalink(sourcePath),
 			Tags:        getTags(frontMatter),
+			IsListed:    getIsListed(frontMatter),
 		},
 		nil
 }
@@ -82,4 +84,12 @@ func getTags(frontMatter map[string]interface{}) []string {
 		return tags
 	}
 	return nil
+}
+
+func getIsListed(frontMatter map[string]interface{}) bool {
+
+	if isListed, found := frontMatter["IsListed"]; found {
+		return isListed.(bool)
+	}
+	return true
 }

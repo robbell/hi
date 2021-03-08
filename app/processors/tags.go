@@ -34,8 +34,10 @@ func (t *Tags) Process(content string, sourcePath string) error {
 		return err
 	}
 
-	for _, tag := range post.Tags {
-		t.tags[tag] = append(t.tags[tag], post)
+	if post.IsListed {
+		for _, tag := range post.Tags {
+			t.tags[tag] = append(t.tags[tag], post)
+		}
 	}
 
 	return nil

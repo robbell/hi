@@ -28,7 +28,9 @@ func (i *Index) Process(content string, sourcePath string) error {
 		return err
 	}
 
-	i.posts = append(i.posts, post)
+	if post.IsListed {
+		i.posts = append(i.posts, post)
+	}
 	return nil
 }
 
