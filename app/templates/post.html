@@ -1,15 +1,22 @@
 {{template "base" .}}
 
 {{define "main"}}
-<h1>{{ .Title }}</h1>
 
-{{ .Body }}
+<article>
+    <h2>{{ .Title }}</h2>
 
-<h2>Tags</h2>
+    {{ .Body }}
 
-<ul>
-    {{range .Tags}}
-    <li><a href="/tags/{{ . }}">{{ . }}</a></li>
-    {{end}}
-</ul>
+    <footer>
+        <h4>Published</h3>
+        <p><time datetime="{{ .PublishedOn }}">- {{ .PublishedOn.Format("January 2006") }}</time></p>
+
+        <h4>Tagged</h3>
+        <ul>
+            {{range .Tags}}
+            <li><a href="/tags/{{ . }}">{{ . }}</a></li>
+            {{end}}
+        </ul>
+    </footer>
+</article>
 {{end}}
