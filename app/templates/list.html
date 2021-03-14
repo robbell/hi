@@ -1,14 +1,10 @@
-{{template "base" .}}
-
-{{define "main"}}
-<!-- {{if .Title}}
-<h2>{{ .Title }}</h2>
-{{end}} -->
-{{range .Posts}}
-<article>
-    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-    <p>{{ .Summary }}</p>
-    <p><a href="{{ .Permalink }}">Continue reading...</a></p>
-</article>
-{{end}}
+{{template "base" .}} 
+{{define "main"}} 
+  {{range .Posts}}
+  <article>
+  <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+  <p>{{ .Summary }}</p>
+  <p><a href="{{ .Permalink }}">Continue reading...</a></p>
+  </article>
+  {{end}} 
 {{end}}

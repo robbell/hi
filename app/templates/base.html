@@ -1,51 +1,70 @@
 {{define "base"}}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Thoughts on software engineering from Rob Bell"
+    />
+    {{if .Title}}
+    <title>{{ .Title }} - Rob Bell</title>
+    {{else}}
+    <title>Rob Bell</title>
+    {{end}}
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&family=Source+Code+Pro:wght@400&family=Zilla+Slab:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/sanitize.css/evergreen.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ .Title }}</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&family=Source+Code+Pro:wght@400&family=Zilla+Slab:wght@300&display=swap"
-    rel="stylesheet" />
-  <link href="https://unpkg.com/sanitize.css/evergreen.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css" />
-</head>
-
-<body>
-  <header>
-    <a href="/"><h1>Rob Bell</h1></a>
-    <nav>
-      <ul>
-        <li><a href="/">New things</a></li>
-        <li><a href="/tags/article">Articles</a></li>
-        <li><a href="/tags/project">Projects</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </nav>
-  </header>
-  {{template "main" .}}
-  <footer>
-    <section>
-      <h4>About</h4>
-      <p>
-        Rob Bell is a Principal Software Engineer from London, working with
-        distributed, high-scale systems and the people who build them.
-      </p>
-    </section>
-    <section>
-      <h4>More</h4>
-      <ul>
-        <li><a href="https://github.com/robbell"><img src="/github.svg" aria-hidden="true" />GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/robbelldev"><img src="/linkedin.svg" aria-hidden="true" />LinkedIn</a></li>
-        <li><a href="/about"><img src="/mail.svg" aria-hidden="true" />Contact me</a></li>
-      </ul>
-    </section>
-  </footer>
-</body>
-
+  <body>
+    <header>
+      <a href="/"><h1>Rob Bell</h1></a>
+      <nav>
+        <ul>
+          <li><a href="/">New things</a></li>
+          <li><a href="/tags/article">Articles</a></li>
+          <li><a href="/tags/project">Projects</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    {{template "main" .}}
+    <footer>
+      <section>
+        <h4>About</h4>
+        <p>
+          Rob Bell is a Principal Software Engineer from London, working with
+          distributed, high-scale systems and the people who build them.
+        </p>
+      </section>
+      <section>
+        <h4>More</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/robbell"
+              ><img src="/github.svg" aria-hidden="true" alt="" />GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/robbelldev"
+              ><img src="/linkedin.svg" aria-hidden="true" alt="" />LinkedIn</a>
+          </li>
+          <li>
+            <a href="/about"
+              ><img src="/mail.svg" aria-hidden="true" alt="" />Contact me</a>
+          </li>
+        </ul>
+      </section>
+    </footer>
+  </body>
 </html>
 {{end}}
