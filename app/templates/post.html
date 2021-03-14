@@ -5,7 +5,7 @@
   {{ .Body }}
   <footer>
     <h4>Published</h4>
-    <p><time datetime="{{ .PublishedOn.Format '2006-01-02' }}">- {{ .PublishedOn.Format "January 2006" }}</time></p>
+    <p><time datetime="{{ .PublishedOn.Format "2006-01-02" }}">- {{ .PublishedOn.Format "January 2006" }}</time></p>
     <h4>Tagged</h4>
     <ul>
       {{range .Tags}}
