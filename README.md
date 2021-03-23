@@ -19,6 +19,8 @@ A developer-friendly static site generator, written in Go, backed by GitHub.
   - [x] Persistent storage for generated site
   - [ ] Secret management
 - [ ] Tests! (Probably to come later as I'm still learning Go)
+- [ ] Sorting by date on tag lists
+- [ ] Templates stored in source repo
 
 ### Development practices
 
