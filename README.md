@@ -42,3 +42,13 @@ A developer-friendly static site generator, written in Go, backed by GitHub.
   - [ ] RSS building
   - [ ] Related pages
 - [x] File extension removal
+
+## Notes
+
+To publish a new version of the app, build and push to Docker Hub using the below, incrementing the image tag:
+
+```
+docker buildx build --platform linux/amd64 -t robbell/hi:latest -t robbell/hi:1.1.x --push .
+```
+
+After publishing, update the image tag reference for the Container App to match.
