@@ -38,7 +38,7 @@ jobs:
         run: helm version
 
       - name: kubeconfig
-        run: echo "${{ secrets.KUBECONFIG }}" >> kubeconfig
+        run: echo "${{ secrets.KUBE_CONFIG }}" >> kubeconfig
 
       - name: Helm Upgrade
         run: helm upgrade robbell-latest ./chart
