@@ -3,9 +3,9 @@ webhookSecret: replace-with-webhookSecret
 accessToken: replace-with-accessToken
 
 image:
-  repository: robbell/hi
+  repository: ghcr.io/robbell/hi
   pullPolicy: Always
-  tag: latest
+  tag: main
 
 service:
   type: LoadBalancer
