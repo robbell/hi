@@ -38,10 +38,10 @@ jobs:
         run: echo "${{ secrets.KUBE_CONFIG }}" >> ./kubeconfig
 
       - name: Replace Webhook Sercret
-        run:  sed -i -e 's/replace-with-webhookSecret/${{ secrets.WEBHOOK_SECRET}}/g' ./chart/values.yaml
+        run:  sed -i -e 's/replace-with-webhookSecret/${{ secrets.WEBHOOK_SECRET }}/g' ./chart/values.yaml
 
       - name: Replace Access Token
-        run:  sed -i -e 's/replace-with-accessToken/${{ secrets.ACCESS_TOKEN}}/g' ./chart/values.yaml
+        run:  sed -i -e 's/replace-with-accessToken/${{ secrets.ACCESS_TOKEN }}/g' ./chart/values.yaml
 
       - name: Helm Upgrade
         run: helm upgrade robbell-latest ./chart -i
