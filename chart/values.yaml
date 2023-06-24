@@ -1,4 +1,6 @@
 replicaCount: 2
+webhookSecret: replace-with-webhookSecret
+accessToken: replace-with-accessToken
 
 image:
   repository: robbell/hi
