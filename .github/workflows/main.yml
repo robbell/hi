@@ -34,22 +34,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Helm Version
-        run: helm version
-
-      - name: kubeconfig
-        run: ls -a
-
-      - name: kubeconfig
+      - name: Write kubeconfig to disk
         run: echo "${{ secrets.KUBE_CONFIG }}" >> ./kubeconfig
 
-      - name: kubeconfig
-        run: ls -a
-
-      - name: kubeconfig
-        run: cat ./kubeconfig
-
       - name: Helm Upgrade
-        run: helm upgrade robbell-latest ./chart
+        run: helm upgrade robbell-latest ./chart -i
         env:
           KUBECONFIG: './kubeconfig'
