@@ -45,7 +45,7 @@ A developer-friendly static site generator, written in Go, backed by GitHub.
 
 ## Notes
 
-To publish a new version of the app, build and push to Docker Hub using the below, incrementing the image tag:
+To publish a new version of the app from your local machine, build and push to Docker Hub using the below, incrementing the image tag:
 
 ```
 docker buildx build --platform linux/amd64 -t robbell/hi:latest -t robbell/hi:1.1.x --push .
