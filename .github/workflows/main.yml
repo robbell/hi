@@ -43,6 +43,9 @@ jobs:
       - name: Replace Access Token
         run:  sed -i -e 's/replace-with-accessToken/${{ secrets.ACCESS_TOKEN }}/g' ./chart/values.yaml
 
+      - name: Dump
+        run: cat ./chart/values.yaml
+
       - name: Helm Upgrade
         run: helm upgrade robbell-latest ./chart -i
         env:
