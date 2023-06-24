@@ -26,7 +26,6 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-          env:
             - name: ACCESS_TOKEN
               valueFrom:
                 secretKeyRef:
