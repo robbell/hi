@@ -40,6 +40,12 @@ jobs:
       - name: kubeconfig
         run: echo "${{ secrets.KUBE_CONFIG }}" >> .\kubeconfig
 
+      - name: kubeconfig
+        run: ls -a
+
+      - name: kubeconfig
+        run: cat .\kubeconfig
+
       - name: Helm Upgrade
         run: helm upgrade robbell-latest ./chart
         env:
