@@ -36,3 +36,7 @@ jobs:
 
       - name: Helm Version
         run: helm version
+
+      - name: Helm Upgrade
+        run: helm upgrade robbell-latest .\chart
+        
