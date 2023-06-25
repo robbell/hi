@@ -36,6 +36,8 @@ spec:
                 secretKeyRef:
                   name: {{ include "chart.fullname" . }}
                   key: webhookSecret
+            - name: TITLE
+              value: "Rob Bell deployment"
       volumes:
         - name: volume
           persistentVolumeClaim:
