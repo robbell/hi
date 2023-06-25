@@ -23,7 +23,7 @@ spec:
               name: volume
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           env:
             - name: ACCESS_TOKEN
@@ -38,6 +38,8 @@ spec:
                   key: webhookSecret
             - name: TITLE
               value: "Rob Bell deployment"
+            - name: LISTEN_PORT
+              value: 8080
       volumes:
         - name: volume
           persistentVolumeClaim:
