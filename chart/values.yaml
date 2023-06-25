@@ -8,6 +8,6 @@ image:
   tag: main
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
 
