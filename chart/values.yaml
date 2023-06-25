@@ -3,9 +3,9 @@ webhookSecret: replace-with-webhookSecret
 accessToken: replace-with-accessToken
 
 image:
-  repository: ghcr.io/robbell/hi
+  repository: mcr.microsoft.com/azuredocs/aks-helloworld
   pullPolicy: Always
-  tag: main
+  tag: v1
 
 service:
   type: ClusterIP
