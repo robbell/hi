@@ -8,5 +8,6 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
+      targetPort: 8080
   selector:
     {{- include "chart.selectorLabels" . | nindent 4 }}
