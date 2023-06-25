@@ -3,9 +3,9 @@ webhookSecret: replace-with-webhookSecret
 accessToken: replace-with-accessToken
 
 image:
-  repository: mendhak/http-https-echo
+  repository: ghcr.io/robbell/hi
   pullPolicy: Always
-  tag: 26
+  tag: main
 
 service:
   type: ClusterIP

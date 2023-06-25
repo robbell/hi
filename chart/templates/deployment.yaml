@@ -26,20 +26,16 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-            # - name: ACCESS_TOKEN
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: {{ include "chart.fullname" . }}
-            #       key: accessToken
-            # - name: WEBHOOK_SECRET
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: {{ include "chart.fullname" . }}
-            #       key: webhookSecret
-            # - name: TITLE
-            #   value: "Rob Bell deployment"
-            # - name: LISTEN_PORT
-            #   value: "8080"
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "chart.fullname" . }}
+                  key: accessToken
+            - name: WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "chart.fullname" . }}
+                  key: webhookSecret
       volumes:
         - name: volume
           persistentVolumeClaim:
