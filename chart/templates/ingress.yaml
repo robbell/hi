@@ -3,23 +3,21 @@ kind: Ingress
 metadata:
   name: {{ include "chart.fullname" . }}
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    cert-manager.io/cluster-issuer: prod-issuer
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - ingress-robbell-io.centralus.cloudapp.azure.com
-    secretName: tls-secret
+    - hi.robbell.io
+    secretName: {{ include "chart.fullname" . }}-tls-secret
   rules:
-  - host: ingress-robbell-io.centralus.cloudapp.azure.com
+  - host: hi.robbell.io
     http:
       paths:
-      - path: /robbell(/|$)(.*)
-        pathType: Prefix
+      - path: /
         backend:
           service:
             name: {{ include "chart.fullname" . }}
             port:
-              number: 80
+              number: {{ .Values.service.port }}
