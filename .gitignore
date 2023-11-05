@@ -13,4 +13,5 @@
 
 __debug_bin
 app/static
+!app/static/index.html
 .DS_Store
