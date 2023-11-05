@@ -9,10 +9,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - *.robbell.io
+    - '*.robbell.io'
     secretName: {{ include "chart.fullname" . }}-tls-secret
   rules:
-  - host: *.robbell.io
+  - host: '*.robbell.io'
     http:
       paths:
       - path: /
