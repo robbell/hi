@@ -10,9 +10,20 @@ spec:
   tls:
   - hosts:
     - 'new.robbell.io'
+    - 'other.robbell.io'
     secretName: {{ include "chart.fullname" . }}-tls-secret
   rules:
   - host: 'new.robbell.io'
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "chart.fullname" . }}
+            port:
+              number: {{ .Values.service.port }}
+  - host: 'other.robbell.io'
     http:
       paths:
       - path: /
