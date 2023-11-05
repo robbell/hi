@@ -7,7 +7,7 @@ ADD app/templates/ /build/app/templates
 
 FROM alpine:latest AS production
 COPY --from=builder /build/app /hi
-ADD app/static/index.html /build/static/index.html
+ADD app/static/index.html /hi/static/index.html
 EXPOSE 8080
 
 WORKDIR /hi
