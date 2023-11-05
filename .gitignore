@@ -12,6 +12,6 @@
 *.out
 
 __debug_bin
-app/static
+app/static/*
 !app/static/index.html
 .DS_Store
